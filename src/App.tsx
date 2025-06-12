@@ -1,11 +1,11 @@
 import { Button } from '@/components/ui/button';
-import DialogCard from './components/DialogCard';
+import DialogCardPhone from './components/DialogCardPhone';
 
 function App() {
   return (
     <>
       <div className="flex min-h-svh items-center justify-center gap-1">
-        <DialogCard />
+        <DialogCardPhone />
         <Button variant={'destructive'}>Login</Button>
       </div>
     </>
