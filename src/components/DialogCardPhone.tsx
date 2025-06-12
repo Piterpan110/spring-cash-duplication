@@ -1,5 +1,6 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { XIcon } from 'lucide-react';
-
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -10,16 +11,22 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog';
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot
-} from '@/components/ui/input-otp';
+import { InputOTP, InputOTPSlot } from '@/components/ui/input-otp';
 import imgCardPhone from '../assets/images/card-phone.png';
 import visa from '../assets/images/visa.png';
 
 const DialogCardPhone = () => {
+  const [opt, setOtp] = useState('');
+  const navigate = useNavigate();
+
+  const handleOtpChange = (value: string) => {
+    setOtp(value);
+    if (value.length === 10) {
+      console.log('OTP:', value);
+      navigate('/card-detail');
+    }
+  };
+
   return (
     <Dialog>
       <form>
@@ -58,18 +65,20 @@ const DialogCardPhone = () => {
                       card.
                     </span>
                   </p>
-                  <InputOTP maxLength={10}>
+                  <InputOTP
+                    maxLength={10}
+                    value={opt}
+                    onChange={handleOtpChange}
+                  >
                     <InputOTPSlot index={0} />
                     <InputOTPSlot index={1} />
                     <InputOTPSlot index={2} />
-                    {/* <InputOTPSeparator className="text-[#AAAAAA] text-xl" /> */}
                     <span className="text-[#AAAAAA] text-xl font-medium">
                       -
                     </span>
                     <InputOTPSlot index={3} />
                     <InputOTPSlot index={4} />
                     <InputOTPSlot index={5} />
-                    {/* <InputOTPSeparator className="text-[#AAAAAA]" /> */}
                     <span className="text-[#AAAAAA] text-xl font-medium">
                       -
                     </span>
